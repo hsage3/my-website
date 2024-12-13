@@ -2,7 +2,8 @@
 <html>
 <head>
     <link rel="icon" type="image/png" href="favicon.png">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>omg you're on hannah's website!!!!</title>
     <style>
         body {
@@ -130,5 +131,32 @@
     <footer>
         <p>｡･ﾟﾟ･｡✧･ﾟﾟ･｡･ﾟ(◕‿◕✿)･ﾟ✧･ﾟ･ﾟ｡･ﾟﾟ･｡✧･ﾟﾟ･｡</p>
     </footer>
+    <script>
+        // JavaScript to adjust the width of the animation dynamically
+        window.addEventListener("load", () => {
+            const parent = document.querySelector("#construction-bar");
+            const stripeWidth = 30; // Total width of one pattern (yellow, white, black)
+            const parentWidth = parent.offsetWidth;
+
+            // Calculate the total width needed for seamless animation
+            const totalWidth = Math.ceil((2 * parentWidth) / stripeWidth) * stripeWidth;
+
+            // Apply the calculated width to the ::before pseudo-element
+            const styleSheet = document.styleSheets[0];
+            styleSheet.insertRule(`
+                #construction-bar::before {
+                    width: ${totalWidth}px;
+                }
+            `, styleSheet.cssRules.length);
+
+            // Update the animation keyframes to align with the calculated width
+            styleSheet.insertRule(`
+                @keyframes slide {
+                    from { transform: translateX(0); }
+                    to { transform: translateX(-${stripeWidth}px); }
+                }
+            `, styleSheet.cssRules.length);
+        });
+    </script>
 </body>
 </html>
