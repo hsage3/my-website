@@ -63,7 +63,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 300%; /* Make it wide enough to scroll smoothly */
+            width: 200%; /* Make it wide enough to scroll smoothly */
             height: 100%;
             background: repeating-linear-gradient(
                 45deg,
@@ -99,7 +99,17 @@
                 transform: translateX(0); /* Start at the left edge */
             }
             to {
-                transform: translateX(-33.33%);
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* Media Query for Smaller Screens */
+        @media (max-width: 600px) {
+            #construction-bar {
+                height: 40px;
+            }
+            #construction-message {
+                font-size: 14px;
             }
         }
     </style>
