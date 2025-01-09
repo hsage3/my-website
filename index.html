@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
-
     <title>omg you're on hannah's website!!!!</title>
     <style>
         body {
@@ -17,17 +18,17 @@
             color: #fff;
             padding: 10px 0;
             text-align: center;
-
         }
         nav a {
             color: #fff;
             text-decoration: none;
             margin: 0 15px;
         }
-        nav a:hover {
+        nav a:hover, nav a:focus {
             text-decoration: underline;
+            font-weight: bold;
         }
-        section {
+        main {
             margin: 20px;
             padding: 20px;
             background: #fff;
@@ -42,22 +43,27 @@
             color: #fff;
             margin-top: 20px;
         }
+        @media (max-width: 600px) {
+            main {
+                margin: 10px;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
+    <header role="banner">
         <h1>Welcome to Hannah's Website!</h1>
     </header>
-    <nav>
+    <nav role="navigation">
         <a href="index.html">Home</a>
         <a href="in-progress.html">In-Progress Projects</a>
         <a href="completed.html">Completed Projects</a>
     </nav>
-    <section>
+    <main role="main">
         <h2>About My Website</h2>
         <p>Welcome! Use the navigation above to view my in-progress and completed projects.</p>
-    </section>
-    <footer>
+    </main>
+    <footer role="contentinfo">
         <p>｡･ﾟﾟ･｡✧･ﾟﾟ･｡･ﾟ(◕‿◕✿)･ﾟ✧･ﾟ･ﾟ｡･ﾟﾟ･｡✧･ﾟﾟ･｡</p>
     </footer>
 </body>
