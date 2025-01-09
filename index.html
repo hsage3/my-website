@@ -135,20 +135,21 @@
         <p>｡･ﾟﾟ･｡✧･ﾟﾟ･｡･ﾟ(◕‿◕✿)･ﾟ✧･ﾟ･ﾟ｡･ﾟﾟ･｡✧･ﾟﾟ･｡</p>
     </footer>
     <script>
-        window.addEventListener("load", () => {
+        function setConstructionBarAnimation() {
             const bar = document.getElementById('construction-bar');
-            const stripeWidth = 30; // Width of one pattern cycle (yellow, white, black)
+            const stripeWidth = 30; // Width of one pattern cycle
             const parentWidth = bar.offsetWidth; // Get the width of the bar
     
-            // Calculate the total width to be a multiple of 30px
+            // Calculate total width to be a multiple of 30px
             const totalWidth = Math.ceil((2 * parentWidth) / stripeWidth) * stripeWidth;
     
-            console.log(`Calculated total width: ${totalWidth}px`); // Debugging: show the calculated width
+            console.log(`Calculated total width: ${totalWidth}px`); // Debugging
     
             const styleSheet = document.createElement("style");
             styleSheet.innerHTML = `
                 #construction-bar::before {
                     width: ${totalWidth}px;
+                    height: 100%;
                     background: repeating-linear-gradient(
                         45deg,
                         #FFD700 0,
@@ -165,12 +166,21 @@
                         transform: translateX(0);
                     }
                     to {
-                        transform: translateX(-${totalWidth / 2}px); /* Slide by half the background width */
+                        transform: translateX(-${totalWidth / 2}px); /* Slide by half the width */
                     }
                 }
             `;
+    
+            // Remove any existing styles to prevent duplicates
+            const existingStyle = document.querySelector("head style[data-construction]");
+            if (existingStyle) existingStyle.remove();
+    
+            styleSheet.setAttribute("data-construction", "true");
             document.head.appendChild(styleSheet);
-        });
+        }
+    
+        window.addEventListener("load", setConstructionBarAnimation);
+        window.addEventListener("resize", setConstructionBarAnimation); // Recalculate on resize
     </script>
 
 </body>
