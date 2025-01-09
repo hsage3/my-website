@@ -135,33 +135,42 @@
         <p>｡･ﾟﾟ･｡✧･ﾟﾟ･｡･ﾟ(◕‿◕✿)･ﾟ✧･ﾟ･ﾟ｡･ﾟﾟ･｡✧･ﾟﾟ･｡</p>
     </footer>
     <script>
-    window.addEventListener("load", () => {
-        const bar = document.getElementById('construction-bar');
-        const stripeWidth = 30; // Total width of one pattern (yellow, white, black)
-        const parentWidth = bar.offsetWidth; // Get the width of the construction bar
-
-        // Calculate total width to be an exact multiple of 30px
-        const totalWidth = Math.ceil((2 * parentWidth) / stripeWidth) * stripeWidth;
-
-        // Apply the calculated width to the background element
-        const styleSheet = document.createElement("style");
-        styleSheet.innerHTML = `
-            #construction-bar::before {
-                width: ${totalWidth}px;
-                background: repeating-linear-gradient(
-                    45deg,
-                    #FFD700 0,
-                    #FFD700 10px,
-                    #FFFFFF 10px,
-                    #FFFFFF 20px,
-                    #000000 20px,
-                    #000000 30px
-                );
-                animation: slide 15s linear infinite;
-            }
-        `;
-        document.head.appendChild(styleSheet);
-    });
+        window.addEventListener("load", () => {
+            const bar = document.getElementById('construction-bar');
+            const stripeWidth = 30; // Width of one pattern cycle (yellow, white, black)
+            const parentWidth = bar.offsetWidth; // Get the width of the bar
+    
+            // Calculate the total width to be a multiple of 30px
+            const totalWidth = Math.ceil((2 * parentWidth) / stripeWidth) * stripeWidth;
+    
+            console.log(`Calculated total width: ${totalWidth}px`); // Debugging: show the calculated width
+    
+            const styleSheet = document.createElement("style");
+            styleSheet.innerHTML = `
+                #construction-bar::before {
+                    width: ${totalWidth}px;
+                    background: repeating-linear-gradient(
+                        45deg,
+                        #FFD700 0,
+                        #FFD700 10px,
+                        #FFFFFF 10px,
+                        #FFFFFF 20px,
+                        #000000 20px,
+                        #000000 30px
+                    );
+                    animation: slide 15s linear infinite;
+                }
+                @keyframes slide {
+                    from {
+                        transform: translateX(0);
+                    }
+                    to {
+                        transform: translateX(-${totalWidth / 2}px); /* Slide by half the background width */
+                    }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+        });
     </script>
 
 </body>
